@@ -11,14 +11,17 @@ namespace BookStore
         static void Main(string[] args)
         {
             var bookContainer = new BookContainer();
-
+            char exit = 'e';
             do
             {
                 Console.WriteLine("Prosze wybrac opcje");         //Display Menu
                 Console.WriteLine("a - Dodaj książkę");
                 Console.WriteLine("b - Znajdź książki po tytule");
                 Console.WriteLine("c - Znajdź książki po imieniu i nazwisku autora");
-              
+                Console.WriteLine("d - Wyjście z programu");
+
+               
+
                 var option = Console.ReadKey().KeyChar; // Musi byc KeyChar bo jest char a nie string dalej.
 
                 switch (option)
@@ -38,52 +41,64 @@ namespace BookStore
                         string authorSurname = Console.ReadLine();
                         bookContainer.FindBookAuthor(authorName, authorSurname);
                         break;
+                    case 'd':
+                        exit = 'd';
+                        break;
+                    default:
+                        Console.WriteLine("Proszę podać prawidłowa literę (a/b/c/d");
+                        break;
                 }
-            } while (true);
+            } while (exit != 'd');
         }
         
         private static void AddNewBook(BookContainer bookContainer)
         {          
             Console.WriteLine("Dodajesz książkę:");
-            // pobrac dane ktore potrzeba do stworzenia zdefiniowania ksiazki i potem dane przekazac do listy
-            // wartosci jak argument metody Create
+            
             Console.WriteLine("Prosze podac tytuł książki");
             string title = Console.ReadLine();
-
 
             Console.WriteLine("Proszę podać imie autora");
             string authorName = Console.ReadLine();
      
             Console.WriteLine("Proszę podać nazwisko autora");
-            string authorSurame = Console.ReadLine();
+            string authorSurame = Console.ReadLine();           
+            
+            bool check, range;
+            Console.WriteLine("Proszę podac rok wydania książki");
+            int year = -1;
+            do
+            {
+                check = true;
+                range = true;
+                try
+                {
+                    year = int.Parse(Console.ReadLine());
+                }
 
+                catch (FormatException e)
+                {
+                    Console.WriteLine("Proszę podac liczbę");
+                    check = false;
+                }
+                if (year < 0 || year > 2018)
+                {
+                    Console.WriteLine("Możliwy zakres: 0 - 2018");
+                    range = false;
+                }
+
+            } while (check == false || range == false);
+            DateTime publicationDate = new DateTime(year, 1, 1, 1, 1, 1);
 
             
-
-
-            Console.WriteLine("Proszę podac rok wydania książki");
-            try
-            {
-                int year = int.Parse(Console.ReadLine()); }
-
-            catch (FormatException)
-            {
-                Console.WriteLine("Proszę podac liczbę");
-            }
-
-            //DateTime publication = new DateTime(year, 0, 0, 0, 0, 0);
-            //book.PublicationDate = publication;
-            // czy lepiej zrobić datą tak jak u góry?
-
-
-            Console.WriteLine("Proszę podać tytuł cyklu. Jeśli książka nie należy do cyklu nacisnąć Enter");
+            Console.WriteLine("Proszę podać tytuł cyklu. Jeśli książka nie należy do cyklu nacisnąć Enter");  // Tytul cyklu nie moze byc -10? 
             string cycleTitle = Console.ReadLine();           
 
-            var book = new Book(title, authorName, authorSurame, year, cycleTitle);     // tutaj nie widzi zmiennej year
+            var book = new Book(title, authorName, authorSurame, publicationDate, cycleTitle);
 
             bookContainer.AddBook(book);
 
-            if (cycleTitle != null)
+            if (cycleTitle != null)             // jak uzytkownik ma wpisac aby bylo null ?
             {
                 bookContainer.AddCycle(book);
             }

@@ -12,3 +12,10 @@ C:\Users\Agnieszka\Desktop\Codementors\BookStore 2\ConsoleApp31\obj\Debug\BookSt
 C:\Users\Agnieszka\Desktop\Codementors\BookStore 2\ConsoleApp31\bin\Debug\BookStore.exe.config
 C:\Users\Agnieszka\Desktop\Codementors\BookStore 2\ConsoleApp31\bin\Debug\BookStore.exe
 C:\Users\Agnieszka\Desktop\Codementors\BookStore 2\ConsoleApp31\bin\Debug\BookStore.pdb
+C:\repo\bookstore\BookStore 2\ConsoleApp31\obj\Debug\BookStore.csprojResolveAssemblyReference.cache
+C:\repo\bookstore\BookStore 2\ConsoleApp31\obj\Debug\BookStore.csproj.CoreCompileInputs.cache
+C:\repo\bookstore\BookStore 2\ConsoleApp31\obj\Debug\BookStore.exe
+C:\repo\bookstore\BookStore 2\ConsoleApp31\obj\Debug\BookStore.pdb
+C:\repo\bookstore\BookStore 2\ConsoleApp31\bin\Debug\BookStore.exe.config
+C:\repo\bookstore\BookStore 2\ConsoleApp31\bin\Debug\BookStore.exe
+C:\repo\bookstore\BookStore 2\ConsoleApp31\bin\Debug\BookStore.pdb
