@@ -15,7 +15,6 @@ namespace BookStore
         public DateTime PublicationDate { get; set; }
         public string CycleTitle { get; set; }
 
-     
         public Book(string title, string authorName, string authorSurname, DateTime publicationDate, string cycleTitle)
         {
             Title = title;
@@ -23,7 +22,16 @@ namespace BookStore
             AuthorSurname = authorSurname;
             PublicationDate = publicationDate;
             CycleTitle = cycleTitle;
-            
-        }      
+        }
+
+        public override string ToString()
+        {
+            return Title + " " + AuthorName;
+        }
+
+        public string GetDescription()
+        {
+            return $"{Title} - {AuthorName} {AuthorSurname} ({PublicationDate.Year} r.)";
+        }
     }
 }
