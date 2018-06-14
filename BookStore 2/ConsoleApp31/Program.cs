@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using JetBrains.Annotations;
 
 namespace BookStore
 {
@@ -14,7 +11,7 @@ namespace BookStore
             char exit = 'e';
             do
             {
-                Console.WriteLine("Prosze wybrac opcje");         //Display Menu
+                Console.WriteLine("Prosze wybrac opcje");     
                 Console.WriteLine("a - Dodaj książkę");
                 Console.WriteLine("b - Znajdź książki po tytule");
                 Console.WriteLine("c - Znajdź książki po imieniu i nazwisku autora");
@@ -22,7 +19,7 @@ namespace BookStore
 
                
 
-                var option = Console.ReadKey().KeyChar; // Musi byc KeyChar bo jest char a nie string dalej.
+                var option = Console.ReadKey().KeyChar; 
 
                 switch (option)
                 {
@@ -73,9 +70,9 @@ namespace BookStore
                 range = true;
                 try
                 {
+                    // ReSharper disable once AssignNullToNotNullAttribute
                     year = int.Parse(Console.ReadLine());
                 }
-
                 catch (FormatException e)
                 {
                     Console.WriteLine("Proszę podac liczbę");
@@ -91,18 +88,18 @@ namespace BookStore
             DateTime publicationDate = new DateTime(year, 1, 1, 1, 1, 1);
 
             
-            Console.WriteLine("Proszę podać tytuł cyklu. Jeśli książka nie należy do cyklu nacisnąć Enter");  // Tytul cyklu nie moze byc -10? 
+            Console.WriteLine("Proszę podać tytuł cyklu. Jeśli książka nie należy do cyklu nacisnąć Enter");  
             string cycleTitle = Console.ReadLine();           
 
             var book = new Book(title, authorName, authorSurame, publicationDate, cycleTitle);
 
             bookContainer.AddBook(book);
 
-            if (cycleTitle != null)             // jak uzytkownik ma wpisac aby bylo null ?
+            if (cycleTitle != "")            
             {
                 bookContainer.AddCycle(book);
             }
-                                          
+                                                    
         }       
     }
 }

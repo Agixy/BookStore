@@ -6,39 +6,38 @@ using System.Threading.Tasks;
 
 namespace BookStore
 {
-    class BookContainer
+    internal class BookContainer
     {
-        public List<Book> bookList { get; }
-        public List<Book> cycleList { get; }
+        public List<Book> BookList { get; }
+        public List<Book> CycleList { get; }
 
-        public BookContainer()              // konstruktor
+        public BookContainer()          
         {
-            bookList = new List<Book>();
-            cycleList = new List<Book>();
+            BookList = new List<Book>();
+            CycleList = new List<Book>();
         }
 
         public void AddBook(Book book)
         {
-            bookList.Add(book); // dodanie ksiazki do listy
+            BookList.Add(book); 
         }      
 
-        public void FindBookTitle(string title)     // Gdzie sie komunikuje?
+        public void FindBookTitle(string title) 
         {
             bool check = false, cycle = false;
             int i = 1;
-            //title.ToLower();
-            foreach (Book book in bookList)
+            title.ToLower();
+            foreach (Book book in BookList)
             {               
-                //book.Title.ToLower();
+                book.Title.ToLower();
                 if (book.Title == title)
                 {
                     check = true;
-                    Console.WriteLine($"{i}. {book.Title} - {book.AuthorName} {book.AuthorSurname} ({book.PublicationDate.Year})");
-                    // <nr_porządkowy>. <tytuł> - <imie_autora> <nazwisko_autora> (<rok wydania> r.)           
+                    Console.WriteLine($"{i}. {book.Title} - {book.AuthorName} {book.AuthorSurname} ({book.PublicationDate.Year})");         
 
                     if (book.CycleTitle != "")
                     {
-                        foreach (Book cycleBook in cycleList)
+                        foreach (Book cycleBook in CycleList)
                         {
                             if (cycleBook.CycleTitle == book.CycleTitle && cycleBook.Title != book.Title)
                             {
@@ -67,13 +66,12 @@ namespace BookStore
             bool check = false;
             int i = 1;
             //title.ToLower();
-            foreach (Book book in bookList)
+            foreach (Book book in BookList)
             {
                 //book.Title.ToLower();
                 if (book.AuthorName == authorName && book.AuthorSurname == authorSurname)
                 {
                     Console.WriteLine($"{i}. {book.Title} - {book.AuthorName} {book.AuthorSurname} ({book.PublicationDate})");
-                    // <nr_porządkowy>. <tytuł> - <imie_autora> <nazwisko_autora> (<rok wydania> r.)
                     check = true;
                     i++;
                 }
@@ -87,10 +85,7 @@ namespace BookStore
 
         public void AddCycle(Book book)
         {
-            cycleList.Add(book);
-        }
-
-       
-
+            CycleList.Add(book);
+        }      
     }
 }
