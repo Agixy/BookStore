@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BookStore
 {
@@ -66,6 +62,7 @@ namespace BookStore
                 range = true;
                 try
                 {
+                    // ReSharper disable once AssignNullToNotNullAttribute
                     year = int.Parse(Console.ReadLine());
                 }
                 catch (FormatException e) 
@@ -82,11 +79,12 @@ namespace BookStore
 
             } while (check == false || range == false);
             DateTime publicationDate = new DateTime(year, 1, 1, 1, 1, 1);
-         
+
             Console.WriteLine("Proszę podać tytuł cyklu. Jeśli książka nie należy do cyklu nacisnąć Enter"); 
             string cycleTitle = Console.ReadLine();           
 
             var book = new Book(title, authorName, authorSurame, publicationDate, cycleTitle);
+
             bookContainer.AddBook(book);                                            
         }
 
@@ -116,6 +114,8 @@ namespace BookStore
             {
                 Console.WriteLine("Nie znaleziono ksiazek o takim tytule");
             }
+
+            Console.ReadKey();
         }
 
         private static void FindBookAuthor(BookContainer bookContainer) 
@@ -124,17 +124,22 @@ namespace BookStore
             string authorName = Console.ReadLine();
             Console.WriteLine("Podaj nazwisko autora");
             string authorSurname = Console.ReadLine();
+
             int i = 1;
             var foundedBooks = bookContainer.FindBookAuthor(authorName, authorSurname);
             foreach (Book book in foundedBooks)
             {
-                Console.WriteLine($"{i}. {book.GetDescription()}");           
-                i++;
+                if (book.CycleTitle != "")
+                {
+                    Console.WriteLine($"{i}. {book.GetDescription()}");
+                    i++;
+                }
+
+                if (foundedBooks.Count == 0)
+                {
+                    Console.WriteLine("Nie znaleziono ksiazek takiego autora");
+                }
             }
-            if (foundedBooks.Count == 0)
-            {
-                Console.WriteLine("Nie znaleziono ksiazek takiego autora");
-            }
-        }
+        }                                                         
     }
 }
